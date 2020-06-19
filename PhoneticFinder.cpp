@@ -16,32 +16,36 @@ namespace phonetic
 {
 string find(string text, string word)
 {
-	string swaps[8] = {"vw", "bfp", "gj", "ckq", "sz", "dt", "ou", "iy"};
+	string swaps[8] = {"vw", "bfp", "gj", "ckq", "sz", "dt", "ou", "iy"}; //known mistakes
 
 	while (text.length() > 0)
 	{
 		while(text[0]== ' ' || text[0] == '\t')
 			text = text.substr(1);
-		string temp = "";
+		
+		string temp = "";//current word in the text
+		
 		while (text.length()>0 && text[0] != ' ' && text[0]!='\t')
 		{
-			temp += text[0];
-			text = text.substr(1);
+			temp += text[0]; //build the current word char by char
+			text = text.substr(1); //delete these chars from the text
 		}
-		if(temp.length()==word.length())
+		
+		if(temp.length()==word.length()) //if lengths of the current and wanted words are equal
 		{
-			string temp_word = word;
-			string ans = temp;
+			string temp_word = word; //wanted
+			string ans = temp; //current
 			bool equal = true;
 			
 			while(temp.length()>0 && equal)
 			{
-				char t = temp[0];
-				char w = temp_word[0];
+				char t = temp[0]; //char of current
+				char w = temp_word[0]; //char of wanted
 				temp = temp.substr(1);
 				temp_word = temp_word.substr(1);
 				t = toLowerCase(t);
 				w = toLowerCase(w);
+				
 				if(t!=w)
 				{
 					equal = false;
